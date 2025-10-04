@@ -1,0 +1,146 @@
+body {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 20px;  
+  background-color: #d5fbf9 !important;
+}
+
+video, #video {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+  background: #111;
+  display: block;
+}
+
+.contenedor {
+  border-radius: 20px;
+  max-width: 400px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 24px 12px 32px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+
+#microfono {
+  width: 90vw;
+  max-width: 330px;
+  height: 80px;
+  background-color: #4aee81;
+  font-size: 3em;
+  border: none;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 0;
+  margin: 0 auto 0 auto;
+}
+#microfono:active,
+#microfono.grabando {
+  background-color: #ee300f;
+  box-shadow: 0 0 20px #ee300f;
+}
+#microfono img {
+  width: 50;
+  height: 50px;
+  transition: filter 0.3s;
+}
+#microfono.cargando img {
+  filter: grayscale(1) brightness(0.5);
+}
+
+/* --- Responsive para móviles --- */
+@media (max-width: 600px) {
+  html, body {
+    width: 100vw;
+    min-height: 100vh;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: #c5fcf9 !important;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #dff7f6 !important;
+    overflow: hidden;
+  }
+  .contenedor {
+    border-radius: 18px;
+    max-width: 98vw;
+    width: 98vw;
+    min-width: 0;
+    height: 98vh;
+    min-height: 0;
+    margin: 0 auto;
+    padding: 0 4vw 0 4vw;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 3vh;
+  }
+  video, #video {
+    max-width: 96vw;
+    width: 83vw;
+    height: 55vh;
+    border-radius: 25px;
+    margin-top: 0;
+    margin-bottom: 8px;
+    display: block;
+    background: #111;
+  }
+  #microfono {
+    width: 96vw;
+    max-width: 400px;
+    height: 90px;
+    font-size: 2.7em;
+    border-radius: 40px;
+    margin-top: 10px;
+    margin-bottom: 18px;
+    bottom: 10px;
+  }
+  #microfono img {
+    width: 70px;
+    height: 70px;
+  }
+  h1 {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    margin-top: 18px;
+    text-align: left;
+    width: 100%;
+    padding-left: 15px;
+  }
+}
+
+#icono-microfono {
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+}

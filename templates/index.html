@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Asistente Visual Web</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+  <style>
+    #grupo_controles { display:flex; align-items:center; gap:.5rem; }
+    #video { max-width:100%; display:block; }
+    #nav_overlay { position:absolute; left:0; top:0; pointer-events:none; z-index:20; }
+    #nav_info { font-family:monospace; font-size:.65rem; margin-top:.25rem; opacity:.85; }
+    #video_wrapper { position:relative; display:inline-block; }
+  </style>
+</head>
+<body>
+  <h1>Asistente Visual</h1>
+  <div id="video_wrapper">
+    <video id="video" autoplay playsinline></video>
+  </div>
+  <p id="estado" role="status" aria-live="polite">Diga: "Describe los objetos" o "Toma una foto"</p>
+  <div id="grupo_controles">
+    <button id="microfono" type="button" aria-label="Activar reconocimiento de voz" aria-pressed="false">
+      <img id="icono-microfono" src="{{ url_for('static', filename='imagen/icono.png') }}" alt="Micrófono" draggable="false">
+    </button>
+    <span id="grabando" style="display:none; color:red; font-weight:bold;">●</span>
+  </div>
+
+  <script type="module" src="{{ url_for('static', filename='js/app.js') }}"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      const estado = document.getElementById('estado');
+      function setEstado(texto) { if (estado) estado.textContent = texto; }
+      window.estadoUI = {
+        esperando: () => setEstado('Diga: "Describe los objetos" o "Toma una foto"'),
+        grabando: () => setEstado('Grabando...'),
+        enviado: () => setEstado('Instrucción enviada, esperando respuesta...'),
+        finalizada: () => setEstado('Respuesta finalizada'),
+        listo: () => setEstado('Puede dar otra instrucción'),
+      };
+  // Modo navegación ahora se activa sólo por voz: "modo navegación" o "activar navegación"
+
+  const icono = document.getElementById('icono-microfono');
+      if (icono) {
+        icono.addEventListener('contextmenu', e => e.preventDefault());
+        icono.addEventListener('mousedown', e => { if (e.button === 2) e.preventDefault(); });
+        icono.addEventListener('touchstart', e => { if (e.touches && e.touches.length > 1) e.preventDefault(); });
+      }
+    });
+  </script>
+</body>
+</html>
