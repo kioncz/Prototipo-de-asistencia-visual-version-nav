@@ -27,7 +27,37 @@ app = Flask(__name__)
 
 # ------------------ DISTANCIA / PASOS (reutilizado de Distancia.py) ------------------
 # Anchos reales aproximados en centímetros (puedes ampliar este diccionario).
-ANCHOS_REALES = {"bottle": 7, "chair": 45, "table": 80}
+ANCHOS_REALES = {
+    # Personas y movilidad
+    "person": 50,       # anchura hombros aprox.
+    "Person": 50,       # compatibilidad por si llega capitalizada
+    "bicycle": 65,      # manillar a manillar
+    "motorcycle": 75,
+    "car": 180,
+    "bus": 250,
+    "truck": 250,
+    "train": 300,
+
+    # Mobiliario urbano / señales útiles para navegación
+    "traffic light": 30,
+    "stop sign": 75,
+    "fire hydrant": 20,
+    "parking meter": 15,
+    "bench": 140,
+
+    # Objetos comunes
+    "bottle": 7,
+    "chair": 45,
+    "dining table": 80,
+    "table": 80,        # compatibilidad
+    "dog": 25,
+    "backpack": 30,
+    "handbag": 25,
+    "suitcase": 40,
+    "umbrella": 100,    # abierto (estimado)
+    "skateboard": 20,
+    "potted plant": 30,
+}
 DISTANCIA_FOCAL = 800  # Focal aproximada usada para convertir tamaño en pixeles a distancia
 LONGITUD_PASO = 53     # Longitud de paso estimada (cm) para convertir distancia a pasos
 
@@ -452,4 +482,5 @@ def navegacion_frame():
         })
 
 if __name__ == '__main__':
+
     app.run(host='localhost', port=5000, debug=True)
